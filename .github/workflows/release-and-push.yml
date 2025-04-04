@@ -45,11 +45,11 @@ jobs:
         run: |
           docker build . \
             -t ghcr.io/${{ github.repository }}:${{ inputs.tag }} \
-            ${{ inputs.skip_latest == 'false' && format('-t ghcr.io/{0}:latest', github.repository) || '' }}
+            ${{ !inputs.skip_latest && format('-t ghcr.io/{0}:latest', github.repository) || '' }}
 
       - name: Push image with tag
         run: docker push ghcr.io/${{ github.repository }}:${{ inputs.tag }}
 
       - name: Push image as latest
-        if: inputs.skip_latest == 'false'
+        if: ${{ !inputs.skip_latest }}
         run: docker push ghcr.io/${{ github.repository }}:latest
