@@ -27,7 +27,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/nerjs/oops-ci:1.0.0
+      image: ghcr.io/nerjs/oops-ci:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
